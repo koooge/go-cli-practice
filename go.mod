@@ -1,3 +1,6 @@
-module github.com/you/hello
+module github.com/koooge/go-cli-practice
 
-require rsc.io/quote v1.5.2
+require (
+	github.com/spf13/cobra v0.0.2
+	github.com/spf13/pflag v1.0.1
+)

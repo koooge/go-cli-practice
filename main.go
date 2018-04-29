@@ -1,11 +1,11 @@
-package main // import "github.com/you/hello"
+package main // import "github.com/koooge/go-cli-practice"
 
 import (
 	"fmt"
 
-	"rsc.io/quote"
+	"github.com/spf13/cobra"
 )
 
 func main() {
-	fmt.Println(quote.Hello())
+	fmt.Println()
 }
