@@ -1,11 +1,7 @@
-package main // import "github.com/koooge/go-cli-practice"
+package main
 
-import (
-	"fmt"
-
-	"github.com/spf13/cobra"
-)
+import "github.com/koooge/go-cli-practice/cmd"
 
 func main() {
-	fmt.Println()
+	cmd.Execute()
 }
