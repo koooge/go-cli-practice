@@ -12,10 +12,14 @@ var heyCmd = &cobra.Command{
 	Short: "hey command",
 	Long:  `hey command`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			fmt.Println("Hey " + os.Getenv("USER") + "!")
+		if name != "" {
+			fmt.Println("Hey " + name + "!")
 		} else {
-			fmt.Println("Hey " + args[0] + "!")
+			if len(args) == 0 {
+				fmt.Println("Hey " + os.Getenv("USER") + "!")
+			} else {
+				fmt.Println("Hey " + args[0] + "!")
+			}
 		}
 	},
 }

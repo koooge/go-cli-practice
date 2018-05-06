@@ -10,6 +10,7 @@ import (
 )
 
 var cfgFile string
+var name string
 
 var rootCmd = &cobra.Command{
 	Use:   "go-cli-practice",
@@ -34,7 +35,9 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-cli-practice.yaml)")
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 	rootCmd.AddCommand(heyCmd)
+	heyCmd.PersistentFlags().StringVarP(&name, "name", "n", "", "./go-cli-practice hey -n <name>")
 }
 
 func initConfig() {
