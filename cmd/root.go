@@ -9,19 +9,26 @@ import (
 	"github.com/spf13/viper"
 )
 
+var rootCmd *cobra.Command
 var cfgFile string
-var name string
 
-var rootCmd = &cobra.Command{
-	Use:   "go-cli-practice",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
+func NewCmdRoot() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "go-cli-practice",
+		Short: "A brief description of your application",
+		Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {},
+		Run: func(cmd *cobra.Command, args []string) {},
+	}
+
+	cmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-cli-practice.yaml)")
+	cmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	return cmd
 }
 
 func Execute() {
@@ -33,11 +40,8 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-cli-practice.yaml)")
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
-	rootCmd.AddCommand(heyCmd)
-	heyCmd.PersistentFlags().StringVarP(&name, "name", "n", "", "./go-cli-practice hey -n <name>")
+	rootCmd = NewCmdRoot()
+	rootCmd.AddCommand(NewCmdHey())
 }
 
 func initConfig() {

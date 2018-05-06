@@ -1,25 +1,32 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
 )
 
-var heyCmd = &cobra.Command{
-	Use:   "hey",
-	Short: "hey command",
-	Long:  `hey command`,
-	Run: func(cmd *cobra.Command, args []string) {
-		if name != "" {
-			fmt.Println("Hey " + name + "!")
-		} else {
-			if len(args) == 0 {
-				fmt.Println("Hey " + os.Getenv("USER") + "!")
+var name string
+
+func NewCmdHey() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "hey",
+		Short: "hey command",
+		Long:  `hey command`,
+		Run: func(cmd *cobra.Command, args []string) {
+			if name != "" {
+				cmd.Println("Hey " + name + "!")
 			} else {
-				fmt.Println("Hey " + args[0] + "!")
+				if len(args) == 0 {
+					cmd.Println("Hey " + os.Getenv("USER") + "!")
+				} else {
+					cmd.Println("Hey " + args[0] + "!")
+				}
 			}
-		}
-	},
+		},
+	}
+
+	cmd.PersistentFlags().StringVarP(&name, "name", "n", "", "./go-cli-practice hey -n <name>")
+
+	return cmd
 }
