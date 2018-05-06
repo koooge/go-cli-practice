@@ -13,7 +13,7 @@ require (
 	github.com/spf13/jwalterweatherman v0.0.0-20180109140146-7c0cea34c8ec
 	github.com/spf13/pflag v1.0.1
 	github.com/spf13/viper v1.0.2
-	golang.org/x/sys v0.0.0-20180427151831-cbbc999da32d
+	golang.org/x/sys v0.0.0-20180504064212-6f686a352de6
 	golang.org/x/text v0.3.0
 	gopkg.in/yaml.v2 v2.2.1
 )

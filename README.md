@@ -5,4 +5,6 @@ vgo + spf13/cobra
 build
 ```
 $ vgo build
+$ ./go-cli-practice hey       #=> Hey koooge!
+$ ./go-cli-practice hey hoge  #=> Hey hoge!
 ```
